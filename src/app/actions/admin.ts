@@ -367,7 +367,7 @@ async function runSeed(mode: SeedMode) {
   }
 
   try {
-    await execFileAsync("npm", ["run", "-s", `prisma:seed:${mode}`], {
+    await execFileAsync("npm", ["run", "-s", `db:seed:${mode}`], {
       cwd: process.cwd(),
       env: {
         ...process.env,
