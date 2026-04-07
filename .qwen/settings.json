@@ -3,7 +3,29 @@
     "allow": [
       "Bash(rm *)",
       "Bash(rmdir *)",
-      "Bash(npx *)"
+      "Bash(npx *)",
+      "Bash(npm run *)",
+      "Bash(openssl *)",
+      "Bash(source *)",
+      "Bash(sleep *)",
+      "Bash(curl *)",
+      "Bash(pkill *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tr *)",
+      "Bash(chmod *)",
+      "Bash(bash *)",
+      "Bash(ls *)",
+      "Bash(npm *)",
+      "WebFetch(localhost)",
+      "Bash(lsof *)",
+      "Bash(grep *)",
+      "Bash(echo *)",
+      "Bash(tail *)",
+      "Bash(ss *)",
+      "Bash(cd *)",
+      "Bash(kill *)",
+      "Bash(timeout *)"
     ]
   },
   "$version": 3
