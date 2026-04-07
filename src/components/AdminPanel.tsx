@@ -280,7 +280,7 @@ export default function AdminPanel({
                   if (result?.error) {
                     toast.error(result.error);
                   } else {
-                    toast.success("Seed da Copa concluído.");
+                    toast.success(result?.message ?? "Seed da Copa concluído.");
                   }
                 });
               }}
@@ -298,7 +298,7 @@ export default function AdminPanel({
                   if (result?.error) {
                     toast.error(result.error);
                   } else {
-                    toast.success("Seed de teste concluído.");
+                    toast.success(result?.message ?? "Seed de teste concluído.");
                   }
                 });
               }}

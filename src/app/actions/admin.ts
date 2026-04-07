@@ -1,7 +1,6 @@
 "use server";
 
 import { Prisma, Role } from "@prisma/client";
-import { execFile } from "node:child_process";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth-helpers";
 import { calculatePoints } from "@/lib/scoring";
@@ -10,9 +9,7 @@ import { resetCompetitionData } from "@/lib/reset-competition-data";
 import { parseMatchDateTimeInput } from "@/lib/timezone";
 import { revalidatePath } from "next/cache";
 import { hash } from "bcryptjs";
-import { promisify } from "node:util";
-
-const execFileAsync = promisify(execFile);
+import { seedWorldCup2026, seedBrasileiraoTest } from "@/lib/seed";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ALLOWED_ROLES = [Role.USER, Role.ADMIN] as const;
@@ -367,25 +364,25 @@ async function runSeed(mode: SeedMode) {
   }
 
   try {
-    await execFileAsync("npm", ["run", "-s", `db:seed:${mode}`], {
-      cwd: process.cwd(),
-      env: {
-        ...process.env,
-        SEED_MODE: mode,
-      },
-      maxBuffer: 10 * 1024 * 1024,
-    });
+    const result = mode === "worldcup"
+      ? await seedWorldCup2026(process.env.ADMIN_PASS)
+      : await seedBrasileiraoTest(process.env.ADMIN_PASS);
+
+    if (!result.success) {
+      return { error: result.error };
+    }
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    revalidatePath("/ranking");
+    revalidatePath("/my-bets");
+    revalidatePath("/special-bets");
+
+    return { success: true, message: result.message };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Falha ao executar o seed.";
     return { error: message };
   }
-
-  revalidatePath("/");
-  revalidatePath("/admin");
-  revalidatePath("/ranking");
-  revalidatePath("/my-bets");
-  revalidatePath("/special-bets");
-  return { success: true };
 }
 
 export async function seedWorldCupData() {
