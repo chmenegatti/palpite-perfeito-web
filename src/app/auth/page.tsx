@@ -38,8 +38,8 @@ function InfoPanel() {
   const scoringItems = [
     { icon: Target, iconBg: "bg-gold/20", pts: "25", ptsColor: "text-gold", title: "Placar Exato", desc: "Acertou o placar completo da partida", highlight: true },
     { icon: Trophy, iconBg: "bg-gold/20", pts: "20", ptsColor: "text-gold", title: "Vencedor + Gols de 1 Time", desc: "Acertou quem venceu e os gols de um dos times", highlight: true },
-    { icon: Star, iconBg: "bg-white/10", pts: "15", ptsColor: "text-white/70", title: "Vencedor Seco", desc: "Acertou só quem venceu, mas errou os placares", highlight: false },
     { icon: Star, iconBg: "bg-white/10", pts: "18", ptsColor: "text-white/70", title: "Empate Não Exato", desc: "Acertou que empatou, mas errou o número de gols", highlight: false },
+    { icon: Star, iconBg: "bg-white/10", pts: "15", ptsColor: "text-white/70", title: "Vencedor Seco", desc: "Acertou só quem venceu, mas errou os placares", highlight: false },
     { icon: Zap, iconBg: "bg-white/10", pts: "5", ptsColor: "text-white/70", title: "Gols de um Time (Venc. Errado)", desc: "Errou o vencedor, mas acertou os gols de um time", highlight: false },
   ];
 
@@ -49,27 +49,25 @@ function InfoPanel() {
   ];
 
   return (
-    <div className="w-full min-h-[420px]">
+    <div className="w-full min-h-105">
       {/* Tabs */}
       <div className="flex rounded-lg bg-white/5 p-1 mb-4">
         <button
           onClick={() => setActiveTab("scoring")}
-          className={`flex-1 flex items-center justify-center gap-2 rounded-md py-2 text-sm md:text-base xl:text-lg font-medium transition-all ${
-            activeTab === "scoring"
-              ? "bg-primary text-primary-foreground shadow-sm"
-              : "text-white/50 hover:text-white/80"
-          }`}
+          className={`flex-1 flex items-center justify-center gap-2 rounded-md py-2 text-sm md:text-base xl:text-lg font-medium transition-all ${activeTab === "scoring"
+            ? "bg-primary text-primary-foreground shadow-sm"
+            : "text-white/50 hover:text-white/80"
+            }`}
         >
           <Star className="h-3.5 w-3.5 xl:h-4 xl:w-4" />
           Pontuação
         </button>
         <button
           onClick={() => setActiveTab("prize")}
-          className={`flex-1 flex items-center justify-center gap-2 rounded-md py-2 text-sm md:text-base xl:text-lg font-medium transition-all ${
-            activeTab === "prize"
-              ? "bg-primary text-primary-foreground shadow-sm"
-              : "text-white/50 hover:text-white/80"
-          }`}
+          className={`flex-1 flex items-center justify-center gap-2 rounded-md py-2 text-sm md:text-base xl:text-lg font-medium transition-all ${activeTab === "prize"
+            ? "bg-primary text-primary-foreground shadow-sm"
+            : "text-white/50 hover:text-white/80"
+            }`}
         >
           <Award className="h-3.5 w-3.5 xl:h-4 xl:w-4" />
           Premiação
@@ -329,7 +327,7 @@ export default function AuthPage() {
       {/* ── Mobile: stacked layout ── */}
       <div className="lg:hidden">
         {/* Mobile header */}
-        <div className="bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white px-4 pt-6 pb-4">
+        <div className="bg-linear-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white px-4 pt-6 pb-4">
           <div className="flex items-center gap-3 mb-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary ring-1 ring-primary/50 shadow-lg shadow-primary/20">
               <Trophy className="h-5 w-5 text-primary-foreground" />
@@ -473,170 +471,170 @@ export default function AuthPage() {
         </div>
 
         {/* Mobile Info Section */}
-        <div className="bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white px-4 pb-6">
+        <div className="bg-linear-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white px-4 pb-6">
           <InfoPanel />
         </div>
       </div>
 
       {/* ── Desktop: side-by-side ── */}
-      <div className="hidden lg:flex lg:min-h-screen lg:items-center lg:justify-center lg:py-8 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950">
+      <div className="hidden lg:flex lg:min-h-screen lg:items-center lg:justify-center lg:py-8 bg-linear-to-br from-emerald-950 via-emerald-900 to-teal-950">
         <div className="w-full xl:max-w-[60%] flex shadow-2xl rounded-2xl overflow-hidden">
           {/* LEFT - Dark panel with info */}
-          <div className="lg:w-3/5 flex flex-col bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white p-8 xl:p-10">
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-3">
-            <div className="flex h-10 w-10 xl:h-12 xl:w-12 items-center justify-center rounded-xl bg-primary ring-1 ring-primary/50 shadow-lg shadow-primary/20">
-              <Trophy className="h-5 w-5 xl:h-6 xl:w-6 text-primary-foreground" />
+          <div className="lg:w-3/5 flex flex-col bg-linear-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white p-8 xl:p-10">
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex h-10 w-10 xl:h-12 xl:w-12 items-center justify-center rounded-xl bg-primary ring-1 ring-primary/50 shadow-lg shadow-primary/20">
+                <Trophy className="h-5 w-5 xl:h-6 xl:w-6 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="font-display text-xl xl:text-2xl font-bold tracking-tight">
+                  Palpite Perfeito
+                </h1>
+                <p className="text-[10px] xl:text-xs uppercase tracking-widest text-white/50">
+                  Copa do Mundo 2026
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="font-display text-xl xl:text-2xl font-bold tracking-tight">
-                Palpite Perfeito
-              </h1>
-              <p className="text-[10px] xl:text-xs uppercase tracking-widest text-white/50">
-                Copa do Mundo 2026
-              </p>
+
+            <p className="text-sm xl:text-base text-white/60 mb-6 max-w-lg">
+              Dê seus palpites nas partidas da Copa e dispute com seus amigos!
+            </p>
+
+            <div className="flex-1 overflow-hidden">
+              <InfoPanel />
             </div>
           </div>
 
-          <p className="text-sm xl:text-base text-white/60 mb-6 max-w-lg">
-            Dê seus palpites nas partidas da Copa e dispute com seus amigos!
-          </p>
+          {/* RIGHT - Clean auth form (40%) */}
+          <div className="lg:w-2/5 flex items-center justify-center p-8 xl:p-10 bg-background">
+            <div className="w-full max-w-md">
+              {/* Title */}
+              <div className="mb-8">
+                <h2 className="font-display text-2xl xl:text-3xl font-bold">
+                  {isLogin ? "Bem-vindo de volta!" : "Crie sua conta"}
+                </h2>
+                <p className="text-base xl:text-lg text-muted-foreground mt-2">
+                  {isLogin
+                    ? "Acesse sua conta para ver seus palpites"
+                    : "Registre-se para começar a apostar"}
+                </p>
+              </div>
 
-          <div className="flex-1 overflow-hidden">
-            <InfoPanel />
-          </div>
-        </div>
+              {/* Form */}
+              <form action={handleSubmit} className="space-y-5">
+                {!isLogin && (
+                  <div className="space-y-1.5">
+                    <label className="text-xs xl:text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                      Nome
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="Seu nome"
+                      className="h-12 text-base xl:text-lg"
+                      required={!isLogin}
+                    />
+                  </div>
+                )}
 
-        {/* RIGHT - Clean auth form (40%) */}
-        <div className="lg:w-2/5 flex items-center justify-center p-8 xl:p-10 bg-background">
-          <div className="w-full max-w-md">
-            {/* Title */}
-            <div className="mb-8">
-              <h2 className="font-display text-2xl xl:text-3xl font-bold">
-                {isLogin ? "Bem-vindo de volta!" : "Crie sua conta"}
-              </h2>
-              <p className="text-base xl:text-lg text-muted-foreground mt-2">
-                {isLogin
-                  ? "Acesse sua conta para ver seus palpites"
-                  : "Registre-se para começar a apostar"}
-              </p>
-            </div>
-
-            {/* Form */}
-            <form action={handleSubmit} className="space-y-5">
-              {!isLogin && (
                 <div className="space-y-1.5">
                   <label className="text-xs xl:text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                    Nome
+                    Email
                   </label>
                   <Input
-                    id="name"
-                    name="name"
-                    placeholder="Seu nome"
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="seu@email.com"
                     className="h-12 text-base xl:text-lg"
-                    required={!isLogin}
-                  />
-                </div>
-              )}
-
-              <div className="space-y-1.5">
-                <label className="text-xs xl:text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  className="h-12 text-base xl:text-lg"
-                  required
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs xl:text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                  Senha
-                </label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder={isLogin ? "••••••••" : "Mín. 6 caracteres"}
-                    className="h-12 text-base xl:text-lg pr-10"
                     required
-                    minLength={6}
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword((v) => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 flex h-5 w-5 items-center justify-center text-muted-foreground hover:text-foreground"
-                    aria-label={showPassword ? "Ocultar senha" : "Visualizar senha"}
-                  >
-                    {showPassword ? <EyeOff className="h-3.5 w-3.5 xl:h-4 xl:w-4" /> : <Eye className="h-3.5 w-3.5 xl:h-4 xl:w-4" />}
-                  </button>
                 </div>
-              </div>
 
-              {!isLogin && (
                 <div className="space-y-1.5">
                   <label className="text-xs xl:text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                    Confirmar Senha
+                    Senha
                   </label>
                   <div className="relative">
                     <Input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type={showConfirmPassword ? "text" : "password"}
-                      placeholder="Confirme sua senha"
+                      id="password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder={isLogin ? "••••••••" : "Mín. 6 caracteres"}
                       className="h-12 text-base xl:text-lg pr-10"
                       required
                       minLength={6}
                     />
                     <button
                       type="button"
-                      onClick={() => setShowConfirmPassword((v) => !v)}
+                      onClick={() => setShowPassword((v) => !v)}
                       className="absolute right-3 top-1/2 -translate-y-1/2 flex h-5 w-5 items-center justify-center text-muted-foreground hover:text-foreground"
-                      aria-label={showConfirmPassword ? "Ocultar" : "Visualizar"}
+                      aria-label={showPassword ? "Ocultar senha" : "Visualizar senha"}
                     >
-                      {showConfirmPassword ? <EyeOff className="h-3.5 w-3.5 xl:h-4 xl:w-4" /> : <Eye className="h-3.5 w-3.5 xl:h-4 xl:w-4" />}
+                      {showPassword ? <EyeOff className="h-3.5 w-3.5 xl:h-4 xl:w-4" /> : <Eye className="h-3.5 w-3.5 xl:h-4 xl:w-4" />}
                     </button>
                   </div>
                 </div>
-              )}
 
-              {error && (
-                <p className="text-sm xl:text-base text-destructive text-center">{error}</p>
-              )}
+                {!isLogin && (
+                  <div className="space-y-1.5">
+                    <label className="text-xs xl:text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                      Confirmar Senha
+                    </label>
+                    <div className="relative">
+                      <Input
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type={showConfirmPassword ? "text" : "password"}
+                        placeholder="Confirme sua senha"
+                        className="h-12 text-base xl:text-lg pr-10"
+                        required
+                        minLength={6}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword((v) => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 flex h-5 w-5 items-center justify-center text-muted-foreground hover:text-foreground"
+                        aria-label={showConfirmPassword ? "Ocultar" : "Visualizar"}
+                      >
+                        {showConfirmPassword ? <EyeOff className="h-3.5 w-3.5 xl:h-4 xl:w-4" /> : <Eye className="h-3.5 w-3.5 xl:h-4 xl:w-4" />}
+                      </button>
+                    </div>
+                  </div>
+                )}
 
-              <Button
-                type="submit"
-                className="w-full h-12 text-base xl:text-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20"
-                disabled={isPending}
-              >
-                {isPending ? "Aguarde..." : isLogin ? "Entrar" : "Criar Conta"}
-              </Button>
-            </form>
+                {error && (
+                  <p className="text-sm xl:text-base text-destructive text-center">{error}</p>
+                )}
 
-            <Separator className="my-6" />
+                <Button
+                  type="submit"
+                  className="w-full h-12 text-base xl:text-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20"
+                  disabled={isPending}
+                >
+                  {isPending ? "Aguarde..." : isLogin ? "Entrar" : "Criar Conta"}
+                </Button>
+              </form>
 
-            <p className="text-center text-sm xl:text-base text-muted-foreground">
-              {isLogin ? "Não tem conta?" : "Já tem conta?"}{" "}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsLogin(!isLogin);
-                  setError(null);
-                  setShowPassword(false);
-                  setShowConfirmPassword(false);
-                }}
-                className="text-primary font-semibold hover:underline"
-              >
-                {isLogin ? "Criar conta" : "Entrar"}
-              </button>
-            </p>
+              <Separator className="my-6" />
+
+              <p className="text-center text-sm xl:text-base text-muted-foreground">
+                {isLogin ? "Não tem conta?" : "Já tem conta?"}{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsLogin(!isLogin);
+                    setError(null);
+                    setShowPassword(false);
+                    setShowConfirmPassword(false);
+                  }}
+                  className="text-primary font-semibold hover:underline"
+                >
+                  {isLogin ? "Criar conta" : "Entrar"}
+                </button>
+              </p>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
