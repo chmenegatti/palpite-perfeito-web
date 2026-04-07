@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run db:migrate && npm run build",
+  "buildCommand": "npm run db:migrate && npm run db:seed:admin && npm run build",
   "installCommand": "npm install",
   "framework": "nextjs"
 }
