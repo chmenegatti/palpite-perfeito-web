@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id              String           @id @default(cuid())
+  name            String
+  email           String           @unique
+  password        String
+  role            Role             @default(USER)
+  totalPoints     Int              @default(0)
+  paymentConfirmed Boolean          @default(false)
+  paymentConfirmedAt DateTime?
+  createdAt       DateTime         @default(now())
+  guesses         Guess[]
+  topScorerBet    TopScorerBet?
+  championBet     ChampionBet?
+
+  @@index([totalPoints])
+}
+
+model Match {
+  id         String   @id @default(cuid())
+  teamA      String
+  teamB      String
+  datetime   DateTime
+  groupStage String
+  scoreA     Int?
+  scoreB     Int?
+  status     String   @default("SCHEDULED") // SCHEDULED | FINISHED
+  createdAt  DateTime @default(now())
+  guesses    Guess[]
+  goals      Goal[]
+
+  @@index([datetime])
+}
+
+model Goal {
+  id       String @id @default(cuid())
+  matchId  String
+  team     String // "A" | "B"
+  player   String
+  minute   Int
+  match    Match  @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@index([matchId])
+}
+
+model Guess {
+  id           String   @id @default(cuid())
+  userId       String
+  matchId      String
+  guessA       Int
+  guessB       Int
+  pointsEarned Int?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match        Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, matchId])
+  @@index([userId])
+  @@index([matchId])
+}
+
+model TopScorerBet {
+  id           String @id @default(cuid())
+  userId       String @unique
+  playerName   String
+  totalGoals   Int
+  pointsEarned Int?
+  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChampionBet {
+  id           String @id @default(cuid())
+  userId       String @unique
+  champion     String
+  runnerUp     String
+  finalScoreA  Int
+  finalScoreB  Int
+  pointsEarned Int?
+  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model TournamentResult {
+  id             String  @id @default(cuid())
+  key            String  @unique // "topScorer" | "champion"
+  // Top scorer
+  topScorerName  String?
+  topScorerGoals Int?
+  // Champion
+  champion       String?
+  runnerUp       String?
+  finalScoreA    Int?
+  finalScoreB    Int?
+}
+
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  email     String?
+  ip        String
+  success   Boolean
+  blocked   Boolean  @default(false)
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([ip, createdAt])
+  @@index([email, createdAt])
+}
